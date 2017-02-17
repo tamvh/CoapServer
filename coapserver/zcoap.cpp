@@ -57,8 +57,8 @@ public:
     }
 
     void post_to_mqtt(const unsigned char * buffer_payload) {
-        std::string msg(reinterpret_cast<const char*>(buffer_payload), sizeof(buffer_payload)) ;
-        mqtt->publish(mqtt_topic, msg);        
+        std::string msg((char*)buffer_payload);
+        mqtt->publish(mqtt_topic, msg);
     }
 
     static void hnd_post_esp32(coap_context_t *ctx ,
